@@ -7,7 +7,7 @@ namespace StockManagementSystem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Stock Management system");
-            Stock stock = new Stock();
+            StockPortfolio stock = new StockPortfolio();
             stock.ReadInput();
             Console.Read();
         }
