@@ -8,7 +8,7 @@ namespace StockManagementSystem
         {
             Console.WriteLine("Welcome to Stock Management system");
             Stock stock = new Stock();
-            stock.ReadInpu();
+            stock.ReadInput();
             Console.Read();
         }
     }
