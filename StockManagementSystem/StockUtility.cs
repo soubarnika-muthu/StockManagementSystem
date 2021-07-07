@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace StockManagementSystem
 {
+    //utility class that stores the share details
     public class StockUtility
     {
-        //public StockLinkedList<Stock> stocksList { get; set; }
-
-
 
         public string companyName { get; set; }
         public int numberOfShare { get; set; }
