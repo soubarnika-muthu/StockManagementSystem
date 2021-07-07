@@ -11,12 +11,14 @@ namespace StockManagementSystem
     class StockManager
     {
         StockLinkedList stockLinkedList;
+        LinkedListStack stack;
         int totalValue = 0;
         StockUtility[] stocks1;
         DateTime date;
         public StockManager()
         {
             this.stockLinkedList = new StockLinkedList();
+            this.stack = new LinkedListStack();
         }
 
         //method to add new share 
@@ -33,6 +35,7 @@ namespace StockManagementSystem
             stock.date = date.ToString("dd/MM/yyyy");
             stock.time = date.ToString("HH:mm:ss");
             stockLinkedList.AddLast(stock);
+            stack.PushStack(stock.companyName, "Brought");
         }
 
         //method to print the report
@@ -98,6 +101,7 @@ namespace StockManagementSystem
                 stock.time = date.ToString("HH:mm:ss");
                 stockLinkedList.AddLast(stock);
             }
+            stack.PushStack(company, "Brought");
 
         }
 
@@ -109,7 +113,7 @@ namespace StockManagementSystem
             //create the new object for utility  class 
             StockUtility stock = new StockUtility();
             int contains = 0;
-
+            stocks1 = this.stockLinkedList.display();
             for (int i = 0; i < stocks1.Length; i++)
             {
                 if (stocks1[i].companyName.Equals(company) && amount < stocks1[i].numberOfShare)
@@ -127,6 +131,7 @@ namespace StockManagementSystem
                     Console.WriteLine("since amount is less that available share enite share is sold ");
                     //if number of share is less than amount the remove the entire share
                     stockLinkedList.RemoveData(stocks1[i]);
+                    break;
                 }
             }
 
@@ -134,8 +139,18 @@ namespace StockManagementSystem
             {
                 Console.WriteLine("No share is Available"); ;
             }
+            else
+            {
+                stack.PushStack(company, "sold");
+            }
 
         }
+
+        public void PuchaseDetail()
+        {
+            stack.PopStack();
+        }
+
 
         //calculate the total share value
         public static int CalculateStockValue(int num, int price)
